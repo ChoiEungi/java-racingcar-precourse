@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OutputRole {
     private static final String RESULT_INSTRUCTION = "실행 결과 ";
@@ -15,7 +16,7 @@ public class OutputRole {
         System.out.println(RESULT_INSTRUCTION);
     }
 
-    public void printOneGame(ArrayList<Car> carList) {
+    public void printOneGame(List<Car> carList) {
         for (Car car : carList) {
             printFormattedResult(car);
             System.out.println();
@@ -24,7 +25,7 @@ public class OutputRole {
 
     }
 
-    public void printWinner(ArrayList<String> winnersList) {
+    public void printWinner(List<String> winnersList) {
         System.out.print(FINAL_WINNER + MATCH_USER_AND_RESULT);
         String winners = "";
         for (String winner : winnersList) {
