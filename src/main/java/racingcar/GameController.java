@@ -7,15 +7,14 @@ import java.util.ArrayList;
 public class GameController {
     private static final int MAX_PICK_NUMBER = 9;
     private static final int MIN_PICK_NUMBER = 0;
+    private static final InputRole inputRole = new InputRole();
     private static final int MOVE_FORWARD_CONTION_NUMBER = 4;
     private final ArrayList<Car> carList = new ArrayList<>();
     private final ArrayList<String> winnersList = new ArrayList<>();
 
     public void gameStart() {
-        InputRole inputRole = new InputRole();
         OutputRole outputRole = new OutputRole();
-        inputRole.inputStart();
-        changeInputToCar(inputRole);
+        changeInputToCar(inputRole.getNameList());
 
         outputRole.pirntResultInstruction();
         for (int i = 0; i < inputRole.getTrialNmber(); i++) {
@@ -26,8 +25,8 @@ public class GameController {
         outputRole.printWinner(winnersList);
     }
 
-    private void changeInputToCar(InputRole inputRole) {
-        for (String name : inputRole.getNameList()) {
+    private void changeInputToCar(String[] nameList) {
+        for (String name : nameList) {
             this.carList.add(new Car(name));
         }
     }

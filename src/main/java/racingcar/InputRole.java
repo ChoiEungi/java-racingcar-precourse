@@ -10,37 +10,28 @@ public class InputRole {
     private static final String NAME_WHITESPACE_ERROR = "입력에 공백이 들어가면 안됩니다. ";
     private static final String NUMBER_VALID_ERROR = "시도 횟수는 숫자여야 한다. ";
 
-    private String[] nameList;
-    private Integer trialNmber;
-
-    public void inputStart() {
-        while (true) {
-            try {
-                inputNames();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        while (true) {
-            try {
-                inputTrialNumber();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
     public String[] getNameList() {
-        return nameList;
+        while (true) {
+            try {
+                return inputNames();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    public int getTrialNmber() {
-        return trialNmber;
+    public Integer getTrialNmber() {
+        while (true) {
+            try {
+                return inputTrialNumber();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private void inputNames() {
+
+    private String[] inputNames() {
         System.out.println(NAME_INPUT_INSTRUCTION);
         String inputNames = Console.readLine();
         String[] nameList = inputNames.split(",");
@@ -48,7 +39,7 @@ public class InputRole {
             checkNameWhiteSpaceValid(name);
             checkNameLengthValid(name);
         }
-        this.nameList = nameList;
+        return nameList;
     }
 
 
@@ -64,11 +55,11 @@ public class InputRole {
         }
     }
 
-    private void inputTrialNumber() {
+    private Integer inputTrialNumber() {
         System.out.println(TRIAL_NUMBER_INPUT_INSTRUCTION);
         String inputNumber = Console.readLine();
         checkTrialNumberValid(inputNumber);
-        this.trialNmber = Integer.valueOf(inputNumber);
+        return Integer.valueOf(inputNumber);
     }
 
     private void checkTrialNumberValid(String trialNumber) {
